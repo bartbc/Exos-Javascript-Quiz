@@ -44,23 +44,23 @@ function controlResp(numQuestion) {
     var obj=JSON.parse(contenuJson);
     let msg='', p='';
 
-    p = document.createElement('p')
+    //p = document.createElement('p')
     if (ctrl!==null) {
         let elemnt=document.getElementById(obj[numQuestion-1].repValide);       
         if (ctrl==obj[numQuestion-1].repValide) {
             //reponse ok
             elemnt.classList.add('correct');      
             // msg='Bravo, vous avez trouvé la bonne réponse !';
-            // elemnt.appendChild(p).innerHTML=msg;            
-            return true;            
+            // elemnt.appendChild(p).innerHTML=msg;                      
         } else {
             //reponse fausse             //mettre réponse en vert et réponse user en rouge + message
             elemnt.classList.add('correct');
             elemnt=document.getElementById(ctrl); 
             elemnt.classList.add('error');
             // msg='Malheureusement, vous vous êtes trompé (la bonne réponse est en vert) !';
-            // elemnt.appendChild(p).innerHTML=msg;
-        }  
+            // elemnt.appendChild(p).innerHTML=msg;  
+        }
+        return true;// renvoi vers  clickRep pour bloquer clic sur question terminée 
     }
 }
 
@@ -75,6 +75,33 @@ function validResponse(repUser) {
         resetClickRep();
     }
 }
+
+function clickRep() {
+    var detectRepClic=this.id;
+    
+    let ctrl=controlResp((cptPAge));///controlResp(numQuestion)
+    if (ctrl) {
+        alert ('vous avez déjà validé votre réponse !');
+        return;
+    } else {
+        resetClickRep();
+        let repClick=document.getElementById(detectRepClic);
+        repClick.classList.add('selected');
+        setTimeout(validResponse, 250, detectRepClic);//pause 0,25sec // validResponse(repUser)
+        }
+}
+
+function resetClickRep() {//effacer la précédente selection
+    var matches = document.querySelectorAll("p");
+    for (i=0; i<matches.length; i++) {
+        let ele=document.getElementById(matches[i].id);
+        ele.classList.remove('selected');
+        ele.classList.remove('validated');
+        ele.classList.remove('correct');
+        ele.classList.remove('error');
+    };
+}
+    
 //---Evenements-----------------------------------------------------
 
 function ajoutEvent() { // gestion des évenements
@@ -97,31 +124,7 @@ function ajoutEvent() { // gestion des évenements
     };
 }
 
-function clickRep() {
-    var detectRepClic=this.id;
-    
-    let ctrl=controlResp((cptPAge));///controlResp(numQuestion)
-    if (ctrl) {
-        alert ('vous avez déjà validé votre réponse !');
-        return;
-    } else {
-        resetClickRep();
-        let repClick=document.getElementById(detectRepClic);
-        repClick.classList.add('selected');
-        setTimeout(validResponse, 250, detectRepClic);//pause 0,25sec // validResponse(repUser)
-        }
-    }
 
-    function resetClickRep() {//effacer la précédente selection
-        var matches = document.querySelectorAll("p");
-        for (i=0; i<matches.length; i++) {
-            let ele=document.getElementById(matches[i].id);
-            ele.classList.remove('selected');
-            ele.classList.remove('validated');
-            ele.classList.remove('correct');
-            ele.classList.remove('error');
-        };
-    }
 //---------------------------------------------------------
 function valProgressbar(page) {
     let el=document.getElementsByClassName('progress-bar')[0];
