@@ -6,11 +6,17 @@ p {
     margin: 20px;
     padding: 10px;
 }
-.selected {
+h1 {
+    text-align: center
+}
+h1, h2, h3 {
+    padding: 20px 0 20px 0;
+}
+/* .selected {
     background-color: rgba(0, 111, 214, 0.562);
     border: solid;
     color: white
-}
+} */
 
 .validated {
     background-color: rgba(128, 128, 128, 0.494);

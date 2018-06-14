@@ -76,46 +76,52 @@ function validResponse(repUser) {
     }
 }
 //---Evenements-----------------------------------------------------
-function resetClickRep() {//effacer la précédente selection
-    var matches = document.querySelectorAll("p");
-    for (i=0; i<matches.length; i++) {
-        let ele=document.getElementById(matches[i].id);
-        ele.classList.remove('selected');
-        ele.classList.remove('validated');
-        ele.classList.remove('correct');
-        ele.classList.remove('error');
-    };
-}
-
-function clickRep() {
-var detectRepClic=this.id;
-
-let ctrl=controlResp((cptPAge));///controlResp(numQuestion)
-if (ctrl) {
-    alert ('vous avez déjà validé votre réponse !');
-    return;
-} else {
-    resetClickRep();
-    let repClick=document.getElementById(detectRepClic);
-    repClick.classList.add('selected');
-    setTimeout(validResponse, 250, detectRepClic);//pause 0,25sec // validResponse(repUser)
-    }
-}
 
 function ajoutEvent() { // gestion des évenements
-    let matches = document.querySelectorAll("p");
+    let matches = document.querySelectorAll("p");// ajout event sur p
     for (i=0; i<matches.length; i++) {
         let ele=document.getElementById(matches[i].id);
         ele.addEventListener('click', clickRep);
-        //ele.addEventListener('over', )/ XXXxxxXXXXXvoir section bootstrap
+        ele.addEventListener('mouseover', (event) => {
+            event.target.style.color='blue';
+        });
+        ele.addEventListener('mouseout', (event) => {
+            event.target.style.color='inherit';
+        })
+        
     };
-    matches = document.querySelectorAll("button");
+    matches = document.querySelectorAll("button");// ajout event sur boutons
     for (i=0; i<matches.length; i++) {
         let ele=document.getElementById(matches[i].id);
         ele.addEventListener('click', clickButton);
     };
 }
 
+function clickRep() {
+    var detectRepClic=this.id;
+    
+    let ctrl=controlResp((cptPAge));///controlResp(numQuestion)
+    if (ctrl) {
+        alert ('vous avez déjà validé votre réponse !');
+        return;
+    } else {
+        resetClickRep();
+        let repClick=document.getElementById(detectRepClic);
+        repClick.classList.add('selected');
+        setTimeout(validResponse, 250, detectRepClic);//pause 0,25sec // validResponse(repUser)
+        }
+    }
+
+    function resetClickRep() {//effacer la précédente selection
+        var matches = document.querySelectorAll("p");
+        for (i=0; i<matches.length; i++) {
+            let ele=document.getElementById(matches[i].id);
+            ele.classList.remove('selected');
+            ele.classList.remove('validated');
+            ele.classList.remove('correct');
+            ele.classList.remove('error');
+        };
+    }
 //---------------------------------------------------------
 function valProgressbar(page) {
     let el=document.getElementsByClassName('progress-bar')[0];
@@ -155,7 +161,7 @@ var nbRep=4;
 //reset localstorage
 localStorage.clear();//vide le local storage au demmarrage
 
-var contenuJson=requestHttp(cheminJson);// on charge le json complet // au chargement on charge la premiere page sera chargée par défaut
+requestHttp(cheminJson);// on charge le json complet // au chargement on charge la premiere page sera chargée par défaut
 
 //ajout des events sur la page
 ajoutEvent(); //pour chaque section de la page
