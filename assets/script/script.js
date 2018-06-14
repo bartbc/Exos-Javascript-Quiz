@@ -8,7 +8,7 @@ function requestHttp(url) {// requete Http JSON
                 contenuJson=this.responseText;
                 console.log("Réponse reçue: %s", contenuJson);                
                 //stateJson=true;//on valide l'état du json chargé
-                parseJson(contenuJson, 0);//1ere question chargée par défaut au chargement de la page
+                parseJson(contenuJson, 0);//parseJson(contenuJson, posQuestion) 1ere question chargée par défaut au chargement de la page
                 //return contenuJson;
             } else {
                 console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
@@ -19,7 +19,7 @@ function requestHttp(url) {// requete Http JSON
     req.send(null);
 } 
 
-function parseJson(contenuJson, posQuestion) {
+function parseJson(contenuJson, posQuestion) {//appel avce contenuJson et posquestion (index) 
     var obj=JSON.parse(contenuJson);
 
     var el=document.getElementsByTagName('h2')[0];//titre question
@@ -36,50 +36,41 @@ function parseJson(contenuJson, posQuestion) {
         var propRep=document.getElementById('rep'+(i+1));
         propRep.innerHTML='Réponse '+(i+1)+' :<br>'+obj[posQuestion].propositions[i+1];
     };
-
-
-
-    
-    controlResp(obj[posQuestion].id);//on controle si la réponse a déja été soumise
-    
-    ctrl=localStorage.getItem(posQuestion+1);
-    if (ctrl!==null) {
-        if (ctrl==obj[posQuestion].repValide) {
-            //reponse ok
-            alert('ok');
-            //mettre la réponse en vert + message
-        } else {
-            //reponse fausse
-            alert('faux');
-            //mettre réponse en vert et réponse user en rouge + message
-        }  
-    }
-
-// ORGANISER LE VERIF REPONSE ET SON ORGANISATION
+    controlResp(parseInt(obj[posQuestion].id));//controlResp(numQuestion) on controle si la réponse a déja été soumise
 }
 // gestion des réponses------------------------------------------------------------------------------------
 function controlResp(numQuestion) {
     ctrl=localStorage.getItem(numQuestion);
-    //alert(ctrl);
+    var obj=JSON.parse(contenuJson);
+    let msg='', p='';
+
+    p = document.createElement('p')
     if (ctrl!==null) {
-        blocResponse(ctrl);
-        return true;
+        let elemnt=document.getElementById(obj[numQuestion-1].repValide);       
+        if (ctrl==obj[numQuestion-1].repValide) {
+            //reponse ok
+            elemnt.classList.add('correct');      
+            // msg='Bravo, vous avez trouvé la bonne réponse !';
+            // elemnt.appendChild(p).innerHTML=msg;            
+            return true;            
+        } else {
+            //reponse fausse             //mettre réponse en vert et réponse user en rouge + message
+            elemnt.classList.add('correct');
+            elemnt=document.getElementById(ctrl); 
+            elemnt.classList.add('error');
+            // msg='Malheureusement, vous vous êtes trompé (la bonne réponse est en vert) !';
+            // elemnt.appendChild(p).innerHTML=msg;
+        }  
     }
 }
 
-function blocResponse(rep){
-    let elemnt=document.getElementById(rep);
-    elemnt.classList.add('validated');
-    //return true;
-}
-
-function validResponse(response) {
+function validResponse(repUser) {
     let rep=confirm("Validez-vous votre réponse ?")
     if (rep) {
         //enregistrement réponse dans localstorage
-        localStorage.setItem((cptPAge+1), response);
-        blocResponse(response);
-        ////////////////////////////verifReponse();
+        localStorage.setItem((cptPAge), repUser);
+        controlResp(cptPAge) //controlResp(numQuestion)
+
     } else {
         resetClickRep();
     }
@@ -99,7 +90,7 @@ function resetClickRep() {//effacer la précédente selection
 function clickRep() {
 var detectRepClic=this.id;
 
-let ctrl=controlResp((cptPAge+1));///XXXXXXX
+let ctrl=controlResp((cptPAge));///controlResp(numQuestion)
 if (ctrl) {
     alert ('vous avez déjà validé votre réponse !');
     return;
@@ -107,7 +98,7 @@ if (ctrl) {
     resetClickRep();
     let repClick=document.getElementById(detectRepClic);
     repClick.classList.add('selected');
-    setTimeout(validResponse, 250, detectRepClic);//pause 0,25sec
+    setTimeout(validResponse, 250, detectRepClic);//pause 0,25sec // validResponse(repUser)
     }
 }
 
@@ -128,7 +119,7 @@ function ajoutEvent() { // gestion des évenements
 //---------------------------------------------------------
 function valProgressbar(page) {
     let el=document.getElementsByClassName('progress-bar')[0];
-    valProgressBar=(page+1)*10;
+    valProgressBar=(page)*10;
     el.setAttribute('style','width: '+valProgressBar+'%');
     el.setAttribute('aria-valuenow',valProgressBar);
     el.innerHTML=(valProgressBar/10)+'/10';
@@ -137,32 +128,32 @@ function valProgressbar(page) {
 // déplacements -----------------------------------------------------------
 function clickButton() {
     if (this.id=='precedent') {
-        if (cptPAge==0) {
+        if (cptPAge==1) {
              alert('vous êtes sur la première page'); // aremplacer par une modal ??
              return;// on sort de la fonction
         } else {
             cptPAge--;
         }
     } else {
-        if (cptPAge==9) {
+        if (cptPAge==10) {
             alert('vous êtes sur la dernière page');// aremplacer par une modal ??
             return;// on sort de la fonction
        } else {
         cptPAge++;
        }
     }
-    valProgressbar(cptPAge);
+    valProgressbar(cptPAge);// VAALEUR A VERIFIER //valProgressbar(page)
     resetClickRep();
-    parseJson(contenuJson,cptPAge);;
+    parseJson(contenuJson,cptPAge-1);//parseJson(contenuJson, posQuestion) appel avec contenuJson et posquestion (index) 
 }
 
 // -----Principal----------------------------------------------------------------
 var cheminJson='http://localhost/Exos-Javascript-Quiz/assets/json/jeu.json';
-var cptPAge=0;
+var cptPAge=1;
 //var stateJson=false;
 var nbRep=4;
 //reset localstorage
-localStorage.clear();
+localStorage.clear();//vide le local storage au demmarrage
 
 var contenuJson=requestHttp(cheminJson);// on charge le json complet // au chargement on charge la premiere page sera chargée par défaut
 
