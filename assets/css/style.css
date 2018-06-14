@@ -1,0 +1,29 @@
+img {
+    height :250px;
+    text-align: center;
+}
+p {
+    margin: 20px;
+    padding: 10px;
+}
+.selected {
+    background-color: rgb(0, 214, 161);
+    border: solid;
+    color: white
+}
+
+.validated {
+    background-color: rgba(128, 128, 128, 0.494);
+    border: solid;
+    color: white;
+}
+.error {
+    background-color: rgba(128, 128, 128, 0.494);
+    border: solid;
+    color: red;
+}
+.correct {
+    background-color: rgba(128, 128, 128, 0.494);
+    border: solid;
+    color: green;
+}

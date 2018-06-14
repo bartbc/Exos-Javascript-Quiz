@@ -4,35 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 </head>
 <body>
+<main class="container-fluid">
+  <header>
+      <h1>LE QUIZZ DE NICO & CHRIS</h1>
+      <h2></h2>
+      <h3></h3>
+      <div class="progress">
+          <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">1/10</div>
+      </div>
+  </header>
+      <div class="row align-items-center ">
+        <p class="col border border-primary" id="rep1"></p>
+        <p class="col border border-primary" id="rep2"></p>
+        <img src="" alt="" class="col rounded mx-auto d-block">
+        <!-- <div class="w-100"></div> -->
+        <p class="col border border-primary" id="rep3"></p>
+        <p class="col border border-primary" id="rep4"></p>
+      </div>
 
-  <h1>TITRE DU QUIZZ</h1>
 
-  <h3>Question 1</h3>
-
-  <div class="row">
-    <div class="col" id="rep1">Reponse 1</div>
-    <div class="col" id="rep2">Reponse 2</div>
-    <div class="w-100"></div>
-    <div class="col" id="rep3">Reponse 3</div>
-    <div class="col" id="rep4">Reponse 4</div>
-  </div>
-
-  <div class="container">
-  <div class="row">
-    <div class="col-sm">
-      Precedent
+    <!-- <div class="container"> -->
+    <div class="row">
+        <button type="button" class="col btn btn-primary col-sm" id="precedent">Précedent</button>
+        <div class="col-6"></div>
+        <button type="button" class="col btn btn-primary col-sm" id="suivant">Suivant</button>
     </div>
-    <div class="col-sm">
-      Suivant
-    </div>
-  </div>
-</div>
-
-  <script src="script.js"></script>
+  <!-- </div> -->
+</main>
+  <script src="./assets/script/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
