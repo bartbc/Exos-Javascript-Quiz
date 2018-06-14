@@ -55,16 +55,7 @@ function parseJson(contenuJson, posQuestion) {
         }  
     }
 
-
-
-    
-
 // ORGANISER LE VERIF REPONSE ET SON ORGANISATION
-
-
-
-
-
 }
 // gestion des réponses------------------------------------------------------------------------------------
 function controlResp(numQuestion) {
