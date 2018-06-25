@@ -1,0 +1,123 @@
+[
+    {
+      "id": "1",
+      "question": "Combien de jours d'anniversaires a une personne qui a vécu 50 ans ?",
+      "propositions": {
+        "1": "0",
+        "2": "1",
+        "3": "49",
+        "4": "50"
+      },
+
+      "img":"interrog1.jpg",
+      "repValide": "rep2" 
+    },
+    {
+        "id": "2",
+        "question": "Combien de Pates a cette elephant ? : )",
+        "propositions": {
+          "1": "6",
+          "2": "4",
+          "3": "3",
+          "4": "Impossible de le savoir (illusion)"
+        },
+        "img":"q2.jpg",
+        "repValide": "rep4"
+    },    
+    {
+        "id": "3",
+        "question": "Un homme peut-il se marier avec la soeur de sa veuve ?",
+        "propositions": {
+          "1": "oui dans certains pays",
+          "2": "non",
+          "3": "non sauf à divorcer avant",
+          "4":  "oui mais c est très mal vu"
+        },
+        "img":"interrog3.jpg",
+        "repValide": "rep4"
+    },   
+    {
+        "id": "4",
+        "question": "Que voyez-vous sur cette photo ?",
+        "propositions": {
+          "1": "Un lapin",
+          "2": "Un canard et un lapin",
+          "3": "Patmo et Charlie",
+          "4": "Un canard"
+        },
+        "img":"q4.jpg",
+        "repValide": "rep4"
+    },
+    {
+        "id": "5",
+        "question": "Certains mois de l'année comptent 31 jours. Combien en ont 28 ?",
+        "propositions": {
+          "1": "0",
+          "2": "1",
+          "3": "6",
+          "4": "12"
+        },
+        "img":"interrog5.jpg",
+        "repValide": "rep3"
+    }, 
+    {
+        "id": "6",
+        "question": "Sur cette image apparait des points : de quels couleurs sont-ils ? ( attention c est une illusion :) )",
+        "propositions": {
+          "1": "Noir",
+          "2": "Blanc",
+          "3": "Noir et blanc",
+          "4": "Rouge"
+        },
+        "img":"q6.jpg",
+        "repValide": "rep1"
+    },
+    {
+        "id": "7",
+        "question": "Il y a 10 prunes. Vous en prenez 4. Combien en avez-vous ?",
+        "propositions": {
+          "1": "0",
+          "2": "4",
+          "3": "6",
+          "4": "10"
+        },
+        "img":"interrog7.jpg",
+        "repValide": "rep2"
+    },
+    {
+        "id": "8",
+        "question": "Que voyez-vous au centre de cette image ?",
+        "propositions": {
+          "1": "La lettre B",
+          "2": "Le nombre 13",
+          "3": "Les deux",
+          "4": "Flou"
+        },
+        "img":"q8.jpg",
+        "repValide": "rep2"
+    },
+    {
+        "id": "9",
+        "question": "Combien y a t il de paires de chaussettes dans une vingtaine ?",
+        "propositions": {
+          "1": "0",
+          "2": "10",
+          "3": "20",
+          "4": "40"
+        },
+        "img":"interrog9.jpg",
+        "repValide": "rep3"
+    },
+    {
+        "id": "10",
+        "question": "Logiquement et instinctivement dans quel sens la danseuse tourne-t-elle ?",
+        "propositions": {
+          "1": "Dans le sens des aiguilles d une montre",
+          "2": "Dans le sens contraire des aiguilles d une montre",
+          "3": "Je ne sais pas",
+          "4": "De haut en bas"
+        },
+        "img":"q10.jpg",
+        "repValide": "rep1"
+      }
+]

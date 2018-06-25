@@ -1,0 +1,44 @@
+img {
+    height :250px;
+    text-align: center;
+}
+p {
+    margin: 20px;
+    padding: 10px;
+}
+h1 {
+    text-align: center
+}
+h1, h2, h3 {
+    padding: 20px 0 20px 0;
+    font-size: 18px;
+}
+span {
+    margin: 15px;
+}
+/* .selected {
+    background-color: rgba(0, 111, 214, 0.562);
+    border: solid;
+    color: white
+} */
+
+.validated {
+    background-color: rgba(128, 128, 128, 0.494);
+    border: solid;
+    color: white;
+}
+.error {
+    background-color: red;
+    border: solid;
+    color: white;
+}
+.correct {
+    background-color: green;
+    border: solid;
+    color: white;
+}
+
+html {
+    font-size: 16px;
+}
+
